@@ -1,4 +1,4 @@
-package com.demo.model;
+package fr.unice.polytech.biblio;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
