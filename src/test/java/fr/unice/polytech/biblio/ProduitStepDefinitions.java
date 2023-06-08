@@ -22,7 +22,7 @@ public class ProduitStepDefinitions {
     private String libelleResult;
     private BigDecimal prixResult;
 
-    @Etantdonné("un produit avec id (\\d+), le code \"([^\"]*)\", le libellé \"([^\"]*)\" et le prix (\\d+(\\.\\d+)?)")
+    @Etantdonné("un produit avec id {int}, le code {string}, le libellé {string} et le prix {double}")
     public void unProduitAvecIdCodeLibelleEtPrix(int id, String code, String libelle, double prix) {
         produit = new Produit(id, code, libelle, prix);
     }
@@ -32,7 +32,7 @@ public class ProduitStepDefinitions {
         idResult = produit.getId();
     }
 
-    @Alors("l'id du produit est (\\d+)")
+    @Alors("l'id du produit est {int}")
     public void verifierIdProduit(Integer expectedId) {
         assertEquals(expectedId, idResult);
     }
@@ -42,7 +42,7 @@ public class ProduitStepDefinitions {
         codeResult = produit.getCode();
     }
 
-    @Alors("le code du produit est \"([^\"]*)\"")
+    @Alors("le code du produit est {string}")
     public void verifierCodeProduit(String expectedCode) {
         assertEquals(expectedCode, codeResult);
     }
@@ -52,7 +52,7 @@ public class ProduitStepDefinitions {
         libelleResult = produit.getLibelle();
     }
 
-    @Alors("le libellé du produit est \"([^\"]*)\"")
+    @Alors("le libellé du produit est {string}")
     public void verifierLibelleProduit(String expectedLibelle) {
         assertEquals(expectedLibelle, libelleResult);
     }
@@ -62,7 +62,7 @@ public class ProduitStepDefinitions {
         prixResult = produit.getPrix();
     }
 
-    @Alors("le prix du produit est ([-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?)")
+    @Alors("le prix du produit est {double}")
     public void verifierPrixProduit(double expectedPrix) {
         assertEquals(BigDecimal.valueOf(expectedPrix), prixResult);
     }
