@@ -1,4 +1,4 @@
-package com.demo.model;
+package fr.unice.polytech.biblio;
 
 public class Vendeur {
     private String nom;
