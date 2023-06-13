@@ -21,6 +21,7 @@ pipeline {
                 cucumber buildStatus: 'UNSTABLE',
                         reportTitle: 'My report',
                         fileIncludePattern: '**/*.json',
+                         fileExcludePattern: '**/.vscode/**', // Exclude .vscode folder
                         trendsLimit: 10,
                         classifications: [
                             [
