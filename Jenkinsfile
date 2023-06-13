@@ -4,7 +4,7 @@ pipeline {
     stage('Run Tests') {
       steps {
         // Run Maven on a Unix agent
-        sh './mvnw clean test'
+        sh 'mvn clean test'
       }
       post {
         always {
