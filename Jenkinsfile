@@ -14,25 +14,21 @@ pipeline {
             steps {
                 sh 'mvn test' 
             }
-            post {
-                always {
-                    cucumberMonochrome()
-                    cucumberResults(
-                        fileIncludePattern: 'target/cucumber.json',
+            
+        }
+        stage('Generate HTML report') {
+            steps {
+                cucumber buildStatus: 'UNSTABLE',
+                        reportTitle: 'My report',
+                        fileIncludePattern: '**/*.json',
+                         fileExcludePattern: '**/.vscode/**', // Exclude .vscode folder
                         trendsLimit: 10,
-                        failedStepsNumber: -1,
-                        skippedStepsNumber: -1,
-                        undefinedStepsNumber: -1,
-                        failedScenariosNumber: -1,
-                        failedFeaturesNumber: -1,
-                        pendingStepsNumber: -1,
-                        skippedStepsNumber: -1,
-                        buildStatus: 'null',
-                        sortingMethod: 'ALPHABETICAL',
-                        customCssFiles: '',
-                        customJsFiles: ''
-                    )
-                }
+                        classifications: [
+                            [
+                                'key': 'Browser',
+                                'value': 'Firefox'
+                            ]
+                        ]
             }
         }
     }
