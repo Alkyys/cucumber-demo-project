@@ -16,20 +16,19 @@ pipeline {
             }
             post {
                 always {
-                    cucumberMonochrome()
-                    cucumberResults(
-                        fileIncludePattern: 'target/cucumber.json',
-                        trendsLimit: 10,
-                        failedStepsNumber: -1,
-                        undefinedStepsNumber: -1,
-                        failedScenariosNumber: -1,
-                        failedFeaturesNumber: -1,
-                        pendingStepsNumber: -1,
-                        buildStatus: 'null',
-                        sortingMethod: 'ALPHABETICAL',
-                        customCssFiles: '',
-                        customJsFiles: ''
-                    )
+                    cucumber buildStatus: 'UNSTABLE',
+                            failedFeaturesNumber: 1,
+                            failedScenariosNumber: 1,
+                            skippedStepsNumber: 1,
+                            failedStepsNumber: 1,
+                            classifications: [
+                                    [key: 'Commit', value: '<a href="${GERRIT_CHANGE_URL}">${GERRIT_PATCHSET_REVISION}</a>'],
+                                    [key: 'Submitter', value: '${GERRIT_PATCHSET_UPLOADER_NAME}']
+                            ],
+                            reportTitle: 'My report',
+                            fileIncludePattern: '**/*cucumber-report.json',
+                            sortingMethod: 'ALPHABETICAL',
+                            trendsLimit: 100
                 }
             }
         }
