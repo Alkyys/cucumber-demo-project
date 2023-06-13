@@ -16,7 +16,22 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml' 
+                    cucumberMonochrome()
+                    cucumberResults(
+                        fileIncludePattern: 'target/cucumber.json',
+                        trendsLimit: 10,
+                        failedStepsNumber: -1,
+                        skippedStepsNumber: -1,
+                        undefinedStepsNumber: -1,
+                        failedScenariosNumber: -1,
+                        failedFeaturesNumber: -1,
+                        pendingStepsNumber: -1,
+                        skippedStepsNumber: -1,
+                        buildStatus: 'null',
+                        sortingMethod: 'ALPHABETICAL',
+                        customCssFiles: '',
+                        customJsFiles: ''
+                    )
                 }
             }
         }
