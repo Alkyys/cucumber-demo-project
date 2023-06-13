@@ -16,6 +16,11 @@ pipeline {
             }
             
         }
+        stage('Generate JSON report') {
+            steps {
+                sh 'mvn exec:java -Dexec.mainClass="net.masterthought.cucumber.ReportBuilder" -Dexec.args="--json-file ./src/report --output-directory ./src/report" '
+            }
+        }
         stage('Generate HTML report') {
             steps {
                 cucumber buildStatus: 'UNSTABLE',
