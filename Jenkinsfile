@@ -1,17 +1,35 @@
 pipeline {
-  agent any
-  stages {
-    stage('Run Tests') {
-      steps {
-        // Run Maven on a Unix agent
-        sh './mvnw clean test'
-      }
-      post {
-        always {
-          junit '**/surefire-reports/*.xml'
-          cucumber buildStatus: 'null', customCssFiles: '', customJsFiles: '', failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: 'target/cucumber.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
-        }
-      }
-    }
+    agent any
+    tools {
+    maven 'Maven'
   }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn --version'
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Test') { 
+            steps {
+                sh 'mvn test' 
+            }
+            
+        }
+        stage('Generate HTML report') {
+            steps {
+                cucumber buildStatus: 'UNSTABLE',
+                        reportTitle: 'My report',
+                        fileIncludePattern: '**/*.json',
+                         fileExcludePattern: '**/.vscode/**', // Exclude .vscode folder
+                        trendsLimit: 10,
+                        classifications: [
+                            [
+                                'key': 'Browser',
+                                'value': 'Firefox'
+                            ]
+                        ]
+            }
+        }
+    }
 }
