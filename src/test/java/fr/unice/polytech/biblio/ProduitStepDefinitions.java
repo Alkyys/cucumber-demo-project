@@ -1,15 +1,9 @@
 package fr.unice.polytech.biblio;
 
-// EN
-// import cucumber.api.java.en.Given;
-// import cucumber.api.java.en.Then;
-// import cucumber.api.java.en.When;
-
 // FR
 import io.cucumber.java.fr.Alors;
 import io.cucumber.java.fr.Et;
 import io.cucumber.java.fr.Etantdonné;
-// import io.cucumber.java.fr.Quand;
 
 import java.math.BigDecimal;
 
