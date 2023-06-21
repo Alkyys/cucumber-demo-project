@@ -6,6 +6,7 @@ Avant de pouvoir exécuter l'application, assurez-vous d'avoir installé les él
 
 Java Development Kit (JDK) version 8 ou supérieure
 Maven (pour la gestion des dépendances)
+Docker
 
 ## Installation
 
@@ -37,3 +38,12 @@ Pour exécuter uniquement les tests Cucumber, utilisez la commande suivante :
 ```
 mvn test -Dcucumber.options="--tags @cucumber"
 ```
+
+## Serveur Jenkins 
+Pour lancer le serveur jenkins Dockérisé, nous allons utilisé cette commande :
+```
+docker container run --name jenkins --rm --detach --network jenkins --env DOCKER_HOST=tcp://docker:2376 --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 --publish 7070:8080 --publish 50000:50000 --volume jenkins-data:/var/jenkins_home --volume jenkins-docker-certs:/certs/client:ro jenkins/jenkins
+```
+
+Jenkins est disponible a cette adresse :
+http://localhost:7070
