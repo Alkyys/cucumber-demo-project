@@ -1,10 +1,10 @@
 # Projet Demo Java Cucumber 
-Ce projet est une application de gestion d'une bibliothèque, développée en Java. Il permet de gérer les produits, les clients, les commandes et les vendeurs.
+Ce projet est une application de gestion d'une commerce, développée en Java. Il permet de gérer les produits, les clients, les commandes et les vendeurs.
 
 ## Prérequis
 Avant de pouvoir exécuter l'application, assurez-vous d'avoir installé les éléments suivants :
 
-Java Development Kit (JDK) version 8 ou supérieure
+Java Development Kit (JDK) version 11 ou supérieure
 Maven (pour la gestion des dépendances)
 Docker
 
